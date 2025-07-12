@@ -111,6 +111,7 @@ def search():
         color = colors[i % len(colors)]
         initials = user.user_name[0].upper()
         users.append({
+            "user_id": user.user_id,
             'name': user.user_name,
             'email': user.user_mail,
             'skill': query.capitalize(),
@@ -123,5 +124,10 @@ def search():
         })
 
     return render_template('search-results.html', users=users, query=query)
+
+@app.route('/profile/<int:user_id>')
+def view_profile(user_id):
+    user = UserInfo.query.get_or_404(user_id)
+    return render_template('user_view_profile.html', user=user)
 if __name__ == '__main__':
     app.run(debug=True)

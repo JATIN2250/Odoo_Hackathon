@@ -44,7 +44,7 @@
 
                 <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                     {% for user in users %}
-                    <a href="{{ url_for('profile') }}" class="user-card block">
+                    <a href="{{ url_for('view_profile', user_id = user.user_id) }}" class="user-card block">
                         <div
                             class="bg-gradient-to-br from-{{ user.color }}-100 via-blue-100 to-pink-100 p-5 rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition h-full flex flex-col">
                             <div class="flex items-center mb-4">
