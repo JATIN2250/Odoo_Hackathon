@@ -1,341 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Swap Skills: Lets Grow Together</title>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>Swap Skills: Lets Grow Together</title>
+    </head>
 
-<body class="w-screen h-auto bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100 overflow-x-hidden relative">
+    <body class="w-screen h-auto bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100 overflow-x-hidden relative">
 
-    <div id="signin-up-box"
-        class="h-[100vh] w-[100vw] absolute z-50 flex items-center justify-center backdrop-blur-sm hidden">
-        <div id="login-box"
-            class="w-[90%] max-w-[450px] bg-white rounded-[20px] shadow-2xl mx-auto mt-12 overflow-hidden relative">
-            <a href="#" class="close-btn absolute top-3 right-5 text-gray-500 hover:text-black text-2xl font-bold">&times;</a>
-            <p
-                class="h-[70px] w-full flex justify-center items-center text-[36px] text-white font-bold bg-gradient-to-r from-blue-500 to-purple-500">
-                Login
-            </p>
-
-            <form action="" class="w-full py-8 px-6 flex flex-col items-center space-y-4">
-                <input type="email" name="email" placeholder="Enter your email"
-                    class="bg-gray-100 h-[45px] w-full max-w-[80%] text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                    required />
-
-                <input type="password" name="pass" placeholder="Enter your password"
-                    class="bg-gray-100 h-[45px] w-full max-w-[80%] text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                    required />
-
-                <button
-                    class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-8 rounded-full shadow-md transition duration-300">
+        <div id="signin-up-box"
+            class="h-[100vh] w-[100vw] absolute z-50 flex items-center justify-center backdrop-blur-sm hidden">
+            <div id="login-box"
+                class="w-[90%] max-w-[450px] bg-white rounded-[20px] shadow-2xl mx-auto mt-12 overflow-hidden relative">
+                <a href="#"
+                    class="close-btn absolute top-3 right-5 text-gray-500 hover:text-black text-2xl font-bold">&times;</a>
+                <p
+                    class="h-[70px] w-full flex justify-center items-center text-[36px] text-white font-bold bg-gradient-to-r from-blue-500 to-purple-500">
                     Login
-                </button>
-
-                <a href="#" class="text-sm text-blue-600 hover:underline">
-                    Forgot username or password?
-                </a>
-
-                <a href="#" id="show-signup" class="text-sm text-gray-700 hover:text-purple-600 hover:underline">
-                    Don’t have an account?
-                </a>
-            </form>
-        </div>
-        
-        <div id="signup-box"
-            class="w-[90%] hidden max-w-[450px] bg-white rounded-[20px] shadow-2xl mx-auto mt-12 overflow-hidden relative">
-             <a href="#" class="close-btn absolute top-3 right-5 text-gray-500 hover:text-black text-2xl font-bold">&times;</a>
-            <p
-                class="h-[70px] w-full flex justify-center items-center text-[36px] text-white font-bold bg-gradient-to-r from-blue-500 to-purple-500">
-                Sign Up
-            </p>
-
-            <form action="" class="w-full py-8 px-6 flex flex-col items-center space-y-4">
-                <input type="text" name="username" placeholder="Enter your name"
-                    class="bg-gray-100 h-[45px] w-full max-w-[80%] text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                    required />
-                <input type="email" name="email" placeholder="Enter your email"
-                    class="bg-gray-100 h-[45px] w-full max-w-[80%] text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                    required />
-
-                <input type="password" name="pass" placeholder="Enter your password"
-                    class="bg-gray-100 h-[45px] w-full max-w-[80%] text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                    required />
-
-                <button
-                    class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-8 rounded-full shadow-md transition duration-300">
-                    Sign Up
-                </button>
-                
-                <a href="#" id="show-login" class="text-sm text-gray-700 hover:text-purple-600 hover:underline">
-                    Already have an account?
-                </a>
-            </form>
-        </div>
-    </div>
-    
-    <div id="landing-page" class="w-screen h-auto absolute z-10">
-        <header class="h-[80px] md:h-[100px] lg:h-[60px] w-full">
-            <nav class="h-full w-full bg-[#fafbff] relative flex items-center justify-between px-4">
-                <div id="logo"
-                    class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
-                    Swap Skills
-                </div>
-
-                <div class="relative">
-                    <div id="profile-circle"
-                        class="h-[40px] w-[40px] bg-red-800 rounded-full cursor-pointer flex items-center justify-center text-white font-bold">
-                        U
-                    </div>
-
-                    <div id="profile-menu"
-                        class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 hidden z-50">
-                        <ul class="text-sm text-gray-700">
-                            <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">View Profile</li>
-                            <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Requests</li>
-                            <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Your Connections</li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <main class="h-auto w-screen">
-            <div id="first-search-box" class="h-[300px] w-[100%] flex flex-col justify-center items-center">
-                <b class="text-[24px] lg:text-[36px] text-center">Find & Swap Skills 🌟</b>
-                <p class="text-[12px] lg:text-[16px] mx-[20px] text-center">Connect with learners and sharers. Trade
-                    your knowledge. Grow together.</p><br>
-                <form action="" class="h-[40px] w-[90%] md:w-[60%] lg:w-[30%]">
-                    <input type="search" name="search_skill" id="search_box_main"
-                        placeholder="Search for a skill..."
-                        class="h-[100%] w-[100%] rounded-[20px] focus:outline focus:outline-2 focus:outline-purple-500 text-[16px] text-black flex items-center px-[20px] shadow-2xl">
-                </form>
-            </div>
-            <div class="w-full bg-white py-12 px-4 md:px-10">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Recommended for You</h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div
-                        class="bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
-                        <div class="flex items-center mb-4">
-                            <div
-                                class="w-12 h-12 bg-purple-400 rounded-full flex justify-center items-center text-white font-bold">
-                                JD
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-500">Machine Learning</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600">Offering: Python, ML</p>
-                        <p class="text-sm text-gray-600">Wants: Excel Skills</p>
-                        <p class="text-sm text-gray-600 mt-2">Availability: Evenings</p>
-                    </div>
-
-                    <div
-                        class="bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
-                        <div class="flex items-center mb-4">
-                            <div
-                                class="w-12 h-12 bg-blue-400 rounded-full flex justify-center items-center text-white font-bold">
-                                MJ
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-semibold text-gray-800">Mary Jane</p>
-                                <p class="text-sm text-gray-500">Excel Shortcuts</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600">Offering: Excel, Word</p>
-                        <p class="text-sm text-gray-600">Wants: Machine Learning</p>
-                        <p class="text-sm text-gray-600 mt-2">Availability: Weekends</p>
-                    </div>
-
-                    <div
-                        class="bg-gradient-to-br from-blue-100 via-pink-100 to-purple-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
-                        <div class="flex items-center mb-4">
-                            <div
-                                class="w-12 h-12 bg-red-400 rounded-full flex justify-center items-center text-white font-bold">
-                                AB
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-semibold text-gray-800">Alice Brown</p>
-                                <p class="text-sm text-gray-500">UI Design</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600">Offering: Figma</p>
-                        <p class="text-sm text-gray-600">Wants: Python</p>
-                        <p class="text-sm text-gray-600 mt-2">Availability: Mornings</p>
-                    </div>
-
-                    <div
-                        class="bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
-                        <div class="flex items-center mb-4">
-                            <div
-                                class="w-12 h-12 bg-green-400 rounded-full flex justify-center items-center text-white font-bold">
-                                KT
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-semibold text-gray-800">Kevin Tran</p>
-                                <p class="text-sm text-gray-500">Web Development</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600">Offering: HTML/CSS</p>
-                        <p class="text-sm text-gray-600">Wants: React</p>
-                        <p class="text-sm text-gray-600 mt-2">Availability: Evenings</p>
-                    </div>
-
-                    <div
-                        class="bg-gradient-to-br from-blue-50 via-purple-100 to-pink-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
-                        <div class="flex items-center mb-4">
-                            <div
-                                class="w-12 h-12 bg-yellow-400 rounded-full flex justify-center items-center text-white font-bold">
-                                RS
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-semibold text-gray-800">Ravi Singh</p>
-                                <p class="text-sm text-gray-500">Guitar</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600">Offering: Acoustic</p>
-                        <p class="text-sm text-gray-600">Wants: Video Editing</p>
-                        <p class="text-sm text-gray-600 mt-2">Availability: Anytime</p>
-                    </div>
-
-                    <div
-                        class="bg-gradient-to-br from-pink-100 via-blue-100 to-purple-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
-                        <div class="flex items-center mb-4">
-                            <div
-                                class="w-12 h-12 bg-indigo-400 rounded-full flex justify-center items-center text-white font-bold">
-                                AD
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-semibold text-gray-800">Anjali Das</p>
-                                <p class="text-sm text-gray-500">Video Editing</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600">Offering: Premiere Pro</p>
-                        <p class="text-sm text-gray-600">Wants: Music Theory</p>
-                        <p class="text-sm text-gray-600 mt-2">Availability: Afternoons</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="how_it_works" class="w-full bg-black py-12 px-4 md:px-10">
-                <h2 class="text-white text-4xl md:text-5xl font-bold text-center mb-2">
-                    How it Works
-                </h2>
-                <p class="text-white text-xl text-center mb-10">
-                    3 simple steps. Launching April 2025
                 </p>
 
-                <div class="flex flex-col lg:flex-row justify-center items-stretch gap-8">
+                <form action="" class="w-full py-8 px-6 flex flex-col items-center space-y-4">
+                    <input type="email" name="email" placeholder="Enter your email"
+                        class="bg-gray-100 h-[45px] w-full max-w-[80%] text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                        required />
 
-                    <div class="bg-[#1f1f1f] rounded-xl shadow-lg p-6 flex-1 
-            transition-transform duration-300 hover:scale-105 hover:-translate-y-2">
-                        <h3 class="text-white text-2xl font-semibold mb-3">
-                            <span class="text-blue-400">Sign up</span> and <span class="text-blue-400">List your
-                                skills</span>
-                        </h3>
-                        <p class="text-gray-300 text-sm mb-6">
-                            Create your profile with your email and showcase what you excel at.
-                            From data analysis to negotiation skills to guitar – your expertise is valuable to
-                            someone
-                            in the community.
-                        </p>
-                        <ul class="space-y-2">
-                            <li class="text-white text-sm border-t border-gray-600 pt-2">MACHINE LEARNING — <span
-                                    class="text-gray-400">EXPERT</span></li>
-                            <li class="text-white text-sm border-t border-gray-600 pt-2">TAP DANCING — <span
-                                    class="text-gray-400">NOOB</span></li>
-                            <li class="text-white text-sm border-t border-gray-600 pt-2">EXCEL SHORTCUTS — <span
-                                    class="text-gray-400">PRO</span></li>
-                        </ul>
+                    <input type="password" name="pass" placeholder="Enter your password"
+                        class="bg-gray-100 h-[45px] w-full max-w-[80%] text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                        required />
+
+                    <button
+                        class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-8 rounded-full shadow-md transition duration-300">
+                        Login
+                    </button>
+
+                    <a href="#" class="text-sm text-blue-600 hover:underline">
+                        Forgot username or password?
+                    </a>
+
+                    <a href="#" id="show-signup" class="text-sm text-gray-700 hover:text-purple-600 hover:underline">
+                        Don’t have an account?
+                    </a>
+                </form>
+            </div>
+
+            <div id="signup-box"
+                class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30 backdrop-blur-sm overflow-y-auto">
+
+                <div
+                    class="w-[95%] sm:w-[90%] md:w-[80%] lg:w-[450px] bg-white rounded-[20px] shadow-2xl mx-auto my-8 relative max-h-[95vh] overflow-y-auto p-4">
+
+                    <!-- Close Button -->
+                    <a href="#"
+                        class="close-btn absolute top-3 right-5 text-gray-500 hover:text-black text-2xl font-bold">&times;</a>
+
+                    <!-- Header -->
+                    <p
+                        class="h-[70px] w-full flex justify-center items-center text-[28px] sm:text-[32px] text-white font-bold bg-gradient-to-r from-blue-500 to-purple-500 rounded-t-[20px]">
+                        Sign Up
+                    </p>
+
+                    <!-- Form -->
+                    <form action="" class="w-full py-6 px-4 flex flex-col items-center space-y-4">
+
+                        <!-- Name -->
+                        <input type="text" name="username" placeholder="Enter your name"
+                            class="bg-gray-100 h-[45px] w-full text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                            required />
+
+                        <!-- Email -->
+                        <input type="email" name="email" placeholder="Enter your email"
+                            class="bg-gray-100 h-[45px] w-full text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                            required />
+
+                        <!-- Password -->
+                        <input type="password" name="pass" placeholder="Enter your password"
+                            class="bg-gray-100 h-[45px] w-full text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                            required />
+
+                        <!-- Your Skills -->
+                        <div class="w-full">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Your Skills</label>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-800">
+                                <label><input type="checkbox" name="your_skills" value="Python"> Python</label>
+                                <label><input type="checkbox" name="your_skills" value="Excel"> Excel</label>
+                                <label><input type="checkbox" name="your_skills" value="ML"> ML</label>
+                                <label><input type="checkbox" name="your_skills" value="UI Design"> UI Design</label>
+                                <label><input type="checkbox" name="your_skills" value="Guitar"> Guitar</label>
+                                <label><input type="checkbox" name="your_skills" value="Figma"> Figma</label>
+                            </div>
+                        </div>
+
+                        <!-- Want to Learn -->
+                        <div class="w-full">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Want to Learn</label>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-800">
+                                <label><input type="checkbox" name="want_skills" value="Excel"> Excel</label>
+                                <label><input type="checkbox" name="want_skills" value="ML"> ML</label>
+                                <label><input type="checkbox" name="want_skills" value="React"> React</label>
+                                <label><input type="checkbox" name="want_skills" value="Guitar"> Guitar</label>
+                                <label><input type="checkbox" name="want_skills" value="Video Editing"> Video
+                                    Editing</label>
+                                <label><input type="checkbox" name="want_skills" value="Music Theory"> Music
+                                    Theory</label>
+                            </div>
+                        </div>
+
+                        <!-- Availability -->
+                        <div class="w-full">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Availability (select one
+                                day)</label>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-800">
+                                <label><input type="radio" name="availability" value="Monday" required> Monday</label>
+                                <label><input type="radio" name="availability" value="Tuesday"> Tuesday</label>
+                                <label><input type="radio" name="availability" value="Wednesday"> Wednesday</label>
+                                <label><input type="radio" name="availability" value="Thursday"> Thursday</label>
+                                <label><input type="radio" name="availability" value="Friday"> Friday</label>
+                                <label><input type="radio" name="availability" value="Saturday"> Saturday</label>
+                                <label><input type="radio" name="availability" value="Sunday"> Sunday</label>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <input type="text" name="location" placeholder="Enter your location"
+                            class="bg-gray-100 h-[45px] w-full text-black text-[16px] rounded-[15px] px-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                            required />
+
+                        <!-- Submit -->
+                        <button
+                            class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-8 rounded-full shadow-md transition duration-300">
+                            Sign Up
+                        </button>
+
+                        <!-- Switch to Login -->
+                        <a href="#" id="show-login" class="text-sm text-gray-700 hover:text-purple-600 hover:underline">
+                            Already have an account?
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+
+        <div id="landing-page" class="w-screen h-auto absolute z-10">
+            <header class="h-[80px] md:h-[100px] lg:h-[60px] w-full">
+                <nav class="h-full w-full bg-[#fafbff] relative flex items-center justify-between px-4">
+                    <div id="logo"
+                        class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
+                        Swap Skills
                     </div>
 
-                    <div
-                        class=" bg-[#1f1f1f] rounded-xl shadow-lg p-6 flex-1 
-            transition-transform duration-300 hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-black via-blue-900 to-black rounded-xl shadow-lg p-6 flex-1">
-                        <h3 class="text-white text-2xl font-semibold mb-3">
-                            Search for skills <span class="text-blue-400">you want to learn</span>
-                        </h3>
-                        <p class="text-gray-300 text-sm">
-                            Discover exactly what you need to enhance your toolkit. Use simple filters to find the
-                            perfect peer teacher across both campuses.
-                        </p>
-                        <div class="mt-6">
-                            <img src="https://www.clipartmax.com/png/full/288-2889820_circle-clipart-outer-circle-user-icon-circle-png.png"
-                                class="w-20 h-20 mx-auto opacity-50" />
+                    <div class="relative">
+                        <div id="profile-circle"
+                            class="h-[40px] w-[40px] bg-red-800 rounded-full cursor-pointer flex items-center justify-center text-white font-bold">
+                            U
+                        </div>
+
+                        <div id="profile-menu"
+                            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 hidden z-50">
+                            <ul class="text-sm text-gray-700">
+                                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">View Profile</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Requests</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Your Connections</li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <main class="h-auto w-screen">
+                <div id="first-search-box" class="h-[300px] w-[100%] flex flex-col justify-center items-center">
+                    <b class="text-[24px] lg:text-[36px] text-center">Find & Swap Skills 🌟</b>
+                    <p class="text-[12px] lg:text-[16px] mx-[20px] text-center">Connect with learners and sharers. Trade
+                        your knowledge. Grow together.</p><br>
+                    <form action="/search" method="post" class="h-[40px] w-[90%] md:w-[60%] lg:w-[30%] flex">
+    <input type="search" name="search_skill" id="search_box_main"
+        placeholder="Search for a skill..."
+        class="h-[100%] w-[100%] rounded-l-[20px] focus:outline focus:outline-2 focus:outline-purple-500 text-[16px] text-black flex items-center px-[20px] shadow-2xl">
+    <button type="submit"
+        class="h-[100%] px-6 bg-purple-600 text-white rounded-r-[20px] shadow-2xl hover:bg-purple-700 transition duration-300">
+        Search
+    </button>
+</form>
+                </div>
+                <div class="w-full bg-white py-12 px-4 md:px-10">
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Recommended for You</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div
+                            class="bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
+                            <div class="flex items-center mb-4">
+                                <div
+                                    class="w-12 h-12 bg-purple-400 rounded-full flex justify-center items-center text-white font-bold">
+                                    JD
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold text-gray-800">John Doe</p>
+                                    <p class="text-sm text-gray-500">Machine Learning</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">Offering: Python, ML</p>
+                            <p class="text-sm text-gray-600">Wants: Excel Skills</p>
+                            <p class="text-sm text-gray-600 mt-2">Availability: Evenings</p>
+                        </div>
+
+                        <div
+                            class="bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
+                            <div class="flex items-center mb-4">
+                                <div
+                                    class="w-12 h-12 bg-blue-400 rounded-full flex justify-center items-center text-white font-bold">
+                                    MJ
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold text-gray-800">Mary Jane</p>
+                                    <p class="text-sm text-gray-500">Excel Shortcuts</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">Offering: Excel, Word</p>
+                            <p class="text-sm text-gray-600">Wants: Machine Learning</p>
+                            <p class="text-sm text-gray-600 mt-2">Availability: Weekends</p>
+                        </div>
+
+                        <div
+                            class="bg-gradient-to-br from-blue-100 via-pink-100 to-purple-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
+                            <div class="flex items-center mb-4">
+                                <div
+                                    class="w-12 h-12 bg-red-400 rounded-full flex justify-center items-center text-white font-bold">
+                                    AB
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold text-gray-800">Alice Brown</p>
+                                    <p class="text-sm text-gray-500">UI Design</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">Offering: Figma</p>
+                            <p class="text-sm text-gray-600">Wants: Python</p>
+                            <p class="text-sm text-gray-600 mt-2">Availability: Mornings</p>
+                        </div>
+
+                        <div
+                            class="bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
+                            <div class="flex items-center mb-4">
+                                <div
+                                    class="w-12 h-12 bg-green-400 rounded-full flex justify-center items-center text-white font-bold">
+                                    KT
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold text-gray-800">Kevin Tran</p>
+                                    <p class="text-sm text-gray-500">Web Development</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">Offering: HTML/CSS</p>
+                            <p class="text-sm text-gray-600">Wants: React</p>
+                            <p class="text-sm text-gray-600 mt-2">Availability: Evenings</p>
+                        </div>
+
+                        <div
+                            class="bg-gradient-to-br from-blue-50 via-purple-100 to-pink-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
+                            <div class="flex items-center mb-4">
+                                <div
+                                    class="w-12 h-12 bg-yellow-400 rounded-full flex justify-center items-center text-white font-bold">
+                                    RS
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold text-gray-800">Ravi Singh</p>
+                                    <p class="text-sm text-gray-500">Guitar</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">Offering: Acoustic</p>
+                            <p class="text-sm text-gray-600">Wants: Video Editing</p>
+                            <p class="text-sm text-gray-600 mt-2">Availability: Anytime</p>
+                        </div>
+
+                        <div
+                            class="bg-gradient-to-br from-pink-100 via-blue-100 to-purple-100 p-6 rounded-xl shadow-lg hover:scale-105 transition">
+                            <div class="flex items-center mb-4">
+                                <div
+                                    class="w-12 h-12 bg-indigo-400 rounded-full flex justify-center items-center text-white font-bold">
+                                    AD
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold text-gray-800">Anjali Das</p>
+                                    <p class="text-sm text-gray-500">Video Editing</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">Offering: Premiere Pro</p>
+                            <p class="text-sm text-gray-600">Wants: Music Theory</p>
+                            <p class="text-sm text-gray-600 mt-2">Availability: Afternoons</p>
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center mt-[20px]">
 
-                    <div
-                        class=" bg-[#1f1f1f] rounded-xl shadow-lg p-6 flex-1 
+                <div id="how_it_works" class="w-full bg-black py-12 px-4 md:px-10">
+                    <h2 class="text-white text-4xl md:text-5xl font-bold text-center mb-2">
+                        How it Works
+                    </h2>
+                    <p class="text-white text-xl text-center mb-10">
+                        3 simple steps. Launching April 2025
+                    </p>
+
+                    <div class="flex flex-col lg:flex-row justify-center items-stretch gap-8">
+
+                        <div class="bg-[#1f1f1f] rounded-xl shadow-lg p-6 flex-1 
+            transition-transform duration-300 hover:scale-105 hover:-translate-y-2">
+                            <h3 class="text-white text-2xl font-semibold mb-3">
+                                <span class="text-blue-400">Sign up</span> and <span class="text-blue-400">List your
+                                    skills</span>
+                            </h3>
+                            <p class="text-gray-300 text-sm mb-6">
+                                Create your profile with your email and showcase what you excel at.
+                                From data analysis to negotiation skills to guitar – your expertise is valuable to
+                                someone
+                                in the community.
+                            </p>
+                            <ul class="space-y-2">
+                                <li class="text-white text-sm border-t border-gray-600 pt-2">MACHINE LEARNING — <span
+                                        class="text-gray-400">EXPERT</span></li>
+                                <li class="text-white text-sm border-t border-gray-600 pt-2">TAP DANCING — <span
+                                        class="text-gray-400">NOOB</span></li>
+                                <li class="text-white text-sm border-t border-gray-600 pt-2">EXCEL SHORTCUTS — <span
+                                        class="text-gray-400">PRO</span></li>
+                            </ul>
+                        </div>
+
+                        <div
+                            class=" bg-[#1f1f1f] rounded-xl shadow-lg p-6 flex-1 
+            transition-transform duration-300 hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-black via-blue-900 to-black rounded-xl shadow-lg p-6 flex-1">
+                            <h3 class="text-white text-2xl font-semibold mb-3">
+                                Search for skills <span class="text-blue-400">you want to learn</span>
+                            </h3>
+                            <p class="text-gray-300 text-sm">
+                                Discover exactly what you need to enhance your toolkit. Use simple filters to find the
+                                perfect peer teacher across both campuses.
+                            </p>
+                            <div class="mt-6">
+                                <img src="https://www.clipartmax.com/png/full/288-2889820_circle-clipart-outer-circle-user-icon-circle-png.png"
+                                    class="w-20 h-20 mx-auto opacity-50" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-[20px]">
+
+                        <div
+                            class=" bg-[#1f1f1f] rounded-xl shadow-lg p-6 flex-1 
             transition-transform duration-300 hover:scale-105 hover:-translate-y-2 bg-[#1f1f1f] rounded-xl shadow-lg p-6 flex-1">
-                        <h3 class="text-white text-2xl font-semibold mb-3">
-                            <span class="text-blue-400">Connect</span> & <span class="text-blue-400">Exchange
-                                Knowledge</span>
-                        </h3>
-                        <p class="text-gray-300 text-sm mb-6">
-                            One click connects you directly with your match. Set up a call or meeting, exchange
-                            knowledge, and build a connection. No intermediaries, no complications - PURE PEER
-                            LEARNING!
+                            <h3 class="text-white text-2xl font-semibold mb-3">
+                                <span class="text-blue-400">Connect</span> & <span class="text-blue-400">Exchange
+                                    Knowledge</span>
+                            </h3>
+                            <p class="text-gray-300 text-sm mb-6">
+                                One click connects you directly with your match. Set up a call or meeting, exchange
+                                knowledge, and build a connection. No intermediaries, no complications - PURE PEER
+                                LEARNING!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <footer class="bg-black text-white mt-12">
+                <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-purple-400">Swap Skills</h2>
+                        <p class="mt-2 text-sm text-gray-400">
+                            Learn. Teach. Grow Together.<br />
+                            A peer-to-peer knowledge sharing platform.
                         </p>
                     </div>
-                </div>
-            </div>
-
-        </main>
-
-        <footer class="bg-black text-white mt-12">
-            <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h2 class="text-2xl font-bold text-purple-400">Swap Skills</h2>
-                    <p class="mt-2 text-sm text-gray-400">
-                        Learn. Teach. Grow Together.<br />
-                        A peer-to-peer knowledge sharing platform.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><a href="#how_it_works" class="hover:text-purple-300 transition">How it Works</a></li>
-                        <li><a href="#features" class="hover:text-purple-300 transition">Features</a></li>
-                        <li><a href="#team" class="hover:text-purple-300 transition">Team</a></li>
-                        <li><a href="#contact" class="hover:text-purple-300 transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
-                    <p class="text-sm text-gray-300">📧 support@swapskills.in</p>
-                    <p class="text-sm text-gray-300 mb-4">📍 India</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-purple-300">
-                            <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                                <path
-                                    d="M22,4.01c-0.82,0.36-1.7,0.61-2.63,0.72c0.95-0.57,1.68-1.48,2.02-2.57c-0.89,0.53-1.87,0.91-2.91,1.12C17.69,2.52,16.55,2,15.28,2c-2.46,0-4.46,2-4.46,4.46c0,0.35,0.04,0.69,0.11,1.02C7.34,7.33,4.14,5.62,2.06,2.98C1.61,3.68,1.35,4.5,1.35,5.39c0,1.55,0.79,2.91,2,3.71c-0.73-0.02-1.41-0.22-2.01-0.56c0,0.02,0,0.04,0,0.06c0,2.17,1.54,3.98,3.58,4.4c-0.37,0.1-0.76,0.16-1.16,0.16c-0.28,0-0.56-0.03-0.83-0.08c0.56,1.76,2.2,3.05,4.14,3.09c-1.52,1.19-3.44,1.89-5.53,1.89c-0.36,0-0.72-0.02-1.07-0.06c1.97,1.27,4.31,2.01,6.83,2.01c8.2,0,12.68-6.79,12.68-12.68c0-0.19,0-0.38-0.01-0.56C20.69,5.71,21.4,4.92,22,4.01z" />
-                            </svg>
-                        </a>
-                        <a href="#" class="hover:text-purple-300">
-                            <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                                <path
-                                    d="M19.6,3H4.4C3.1,3,2,4.1,2,5.4v13.2C2,19.9,3.1,21,4.4,21h15.2c1.3,0,2.4-1.1,2.4-2.4V5.4C22,4.1,20.9,3,19.6,3z M8.7,17.3H5.8V9h2.9V17.3z M7.3,7.8C6.3,7.8,5.5,7,5.5,6s0.8-1.8,1.8-1.8s1.8,0.8,1.8,1.8S8.3,7.8,7.3,7.8z M18.2,17.3h-2.9v-4.3c0-1-0.4-1.7-1.4-1.7c-0.8,0-1.3,0.5-1.6,1.1c-0.1,0.2-0.1,0.5-0.1,0.8v4.1h-2.9c0,0,0-6.7,0-7.3h2.9v1c0.4-0.6,1.1-1.5,2.7-1.5c2,0,3.4,1.3,3.4,4.1V17.3z" />
-                            </svg>
-                        </a>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li><a href="#how_it_works" class="hover:text-purple-300 transition">How it Works</a></li>
+                            <li><a href="#features" class="hover:text-purple-300 transition">Features</a></li>
+                            <li><a href="#team" class="hover:text-purple-300 transition">Team</a></li>
+                            <li><a href="#contact" class="hover:text-purple-300 transition">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                        <p class="text-sm text-gray-300">📧 support@swapskills.in</p>
+                        <p class="text-sm text-gray-300 mb-4">📍 India</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="hover:text-purple-300">
+                                <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M22,4.01c-0.82,0.36-1.7,0.61-2.63,0.72c0.95-0.57,1.68-1.48,2.02-2.57c-0.89,0.53-1.87,0.91-2.91,1.12C17.69,2.52,16.55,2,15.28,2c-2.46,0-4.46,2-4.46,4.46c0,0.35,0.04,0.69,0.11,1.02C7.34,7.33,4.14,5.62,2.06,2.98C1.61,3.68,1.35,4.5,1.35,5.39c0,1.55,0.79,2.91,2,3.71c-0.73-0.02-1.41-0.22-2.01-0.56c0,0.02,0,0.04,0,0.06c0,2.17,1.54,3.98,3.58,4.4c-0.37,0.1-0.76,0.16-1.16,0.16c-0.28,0-0.56-0.03-0.83-0.08c0.56,1.76,2.2,3.05,4.14,3.09c-1.52,1.19-3.44,1.89-5.53,1.89c-0.36,0-0.72-0.02-1.07-0.06c1.97,1.27,4.31,2.01,6.83,2.01c8.2,0,12.68-6.79,12.68-12.68c0-0.19,0-0.38-0.01-0.56C20.69,5.71,21.4,4.92,22,4.01z" />
+                                </svg>
+                            </a>
+                            <a href="#" class="hover:text-purple-300">
+                                <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19.6,3H4.4C3.1,3,2,4.1,2,5.4v13.2C2,19.9,3.1,21,4.4,21h15.2c1.3,0,2.4-1.1,2.4-2.4V5.4C22,4.1,20.9,3,19.6,3z M8.7,17.3H5.8V9h2.9V17.3z M7.3,7.8C6.3,7.8,5.5,7,5.5,6s0.8-1.8,1.8-1.8s1.8,0.8,1.8,1.8S8.3,7.8,7.3,7.8z M18.2,17.3h-2.9v-4.3c0-1-0.4-1.7-1.4-1.7c-0.8,0-1.3,0.5-1.6,1.1c-0.1,0.2-0.1,0.5-0.1,0.8v4.1h-2.9c0,0,0-6.7,0-7.3h2.9v1c0.4-0.6,1.1-1.5,2.7-1.5c2,0,3.4,1.3,3.4,4.1V17.3z" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-center text-xs text-gray-500 py-4 border-t border-gray-700">
-                &copy; 2025 Swap Skills | All rights reserved.
-            </div>
-        </footer>
-    </div>
+                <div class="text-center text-xs text-gray-500 py-4 border-t border-gray-700">
+                    &copy; 2025 Swap Skills | All rights reserved.
+                </div>
+            </footer>
+        </div>
 
-    <script src="{{ url_for('static', filename='logic.js') }}"></script>
+        <script src="{{ url_for('static', filename='logic.js') }}"></script>
 
-</body>
+    </body>
 
 </html>

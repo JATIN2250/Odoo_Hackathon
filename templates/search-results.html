@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Search Results - Swap Skills</title>
+</head>
+
+<body class="w-screen h-auto bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100 overflow-x-hidden relative">
+
+    <div id="landing-page" class="w-screen h-auto z-10">
+        <header class="h-[60px] w-full">
+            <nav class="h-full w-full bg-[#fafbff] relative flex items-center justify-between px-4">
+                <a href="/" id="logo"
+                    class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
+                    Swap Skills
+                </a>
+                <div class="relative">
+                    <div id="profile-circle"
+                        class="h-[40px] w-[40px] bg-red-800 rounded-full cursor-pointer flex items-center justify-center text-white font-bold">
+                        U
+                    </div>
+                    <div id="profile-menu"
+                        class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 hidden z-50">
+                        <ul class="text-sm text-gray-700">
+                            <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">View Profile</li>
+                            <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Requests</li>
+                            <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Your Connections</li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="h-auto w-screen">
+            <div class="w-full bg-white py-12 px-4 md:px-10">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Search Results for "{{ query }}"</h2>
+                <p class="text-center text-gray-500 mb-8">Found {{ users|length }} matches. Showing page <span id="page-num">1</span>.
+                </p>
+
+                <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                    {% for user in users %}
+                    <a href="{{ url_for('profile') }}" class="user-card block">
+                        <div
+                            class="bg-gradient-to-br from-{{ user.color }}-100 via-blue-100 to-pink-100 p-5 rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition h-full flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <div
+                                    class="w-12 h-12 bg-{{ user.color }}-400 rounded-full flex justify-center items-center text-white font-bold text-xl">
+                                    {{ user.initials }}
+                                </div>
+                                <div class="ml-3">
+                                    <p class="font-semibold text-gray-800">{{ user.name }}</p>
+                                    <p class="text-sm text-gray-500">{{ user.skill }}</p>
+                                </div>
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm text-gray-700 font-medium">Offering: <span class="font-normal">{{ user.offering }}</span></p>
+                                <p class="text-sm text-gray-700 font-medium">Wants: <span class="font-normal">{{ user.wants }}</span></p>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-3">Availability: {{ user.availability }}</p>
+                            <p class="text-xs text-gray-500">Location: {{ user.location }}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <div id="pagination-controls" class="flex justify-center items-center mt-12 space-x-2">
+                    <button class="px-4 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 text-gray-700">
+                        &laquo; Previous
+                    </button>
+                    <button class="px-4 py-2 bg-purple-500 text-white border border-purple-500 rounded-md">1</button>
+                    <button class="px-4 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 text-gray-700">2</button>
+                    
+                    <button class="px-4 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 text-gray-700">
+                        Next &raquo;
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-black text-white">
+            <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-purple-400">Swap Skills</h2>
+                    <p class="mt-2 text-sm text-gray-400">Learn. Teach. Grow Together.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#how_it_works" class="hover:text-purple-300 transition">How it Works</a></li>
+                        <li><a href="#contact" class="hover:text-purple-300 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <p class="text-sm text-gray-300">📧 support@swapskills.in</p>
+                    <p class="text-sm text-gray-300 mb-4">📍 India</p>
+                </div>
+            </div>
+            <div class="text-center text-xs text-gray-500 py-4 border-t border-gray-700">
+                &copy; 2025 Swap Skills | All rights reserved.
+            </div>
+        </footer>
+    </div>
+    
+    </body>
+</html>

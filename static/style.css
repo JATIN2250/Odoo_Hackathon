@@ -2,3 +2,23 @@
     overflow: hidden;
     height: 100vh;
 }
+
+
+  /* Stylish Thin Scrollbar */
+  #signup-box::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  #signup-box::-webkit-scrollbar-track {
+    background: #f3f4f6; /* light gray */
+    border-radius: 10px;
+  }
+
+  #signup-box::-webkit-scrollbar-thumb {
+    background: #a78bfa; /* purple */
+    border-radius: 10px;
+  }
+
+  #signup-box::-webkit-scrollbar-thumb:hover {
+    background: #7c3aed; /* darker purple on hover */
+  }
