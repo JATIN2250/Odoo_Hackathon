@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
+from db_models import create_app, db, UserInfo
 
-app = Flask(__name__)
+app = create_app()
 
 # Dummy data for demonstration. In a real app, you'd query a database.
 # I've created 17 sample users to demonstrate pagination.
@@ -69,5 +70,28 @@ def profile():
     user_data = all_users[0]
     return render_template('user-profile.html', user=user_data)
 
+@app.route('/register', methods=['POST'])
+def register():
+    if request.method == 'POST':
+        # Get all selected checkboxes and join into comma-separated strings
+        skills_have = ", ".join(request.form.getlist('your_skills'))
+        skills_want = ", ".join(request.form.getlist('want_skills'))
+        availability = ", ".join(request.form.getlist('availability'))
+
+        new_user = UserInfo(
+            user_name=request.form['username'],
+            user_mail=request.form['email'],
+            password=request.form['pass'],
+            location=request.form.get('location'),
+            skills_have=skills_have,
+            skills_want=skills_want,
+            availability=availability
+        )
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        # Redirect back to login box or homepage
+        return redirect('/')
 if __name__ == '__main__':
     app.run(debug=True)
