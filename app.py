@@ -81,7 +81,7 @@ def register():
         new_user = UserInfo(
             user_name=request.form['username'],
             user_mail=request.form['email'],
-            password=request.form['pass'],
+            password=request.form['pass_'],
             location=request.form.get('location'),
             skills_have=skills_have,
             skills_want=skills_want,
