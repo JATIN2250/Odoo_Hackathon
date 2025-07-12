@@ -30,7 +30,7 @@ def home():
     # Pass the first 6 users as "recommendations" to the home page
     recommended_users = all_users[:6]
     return render_template('my.html', users=recommended_users)
-
+'''
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     # Get the search query from URL parameters for GET requests
@@ -61,7 +61,7 @@ def search():
         results = all_users
 
     return render_template('search-results.html', query=query, users=results)
-
+'''
 @app.route('/profile')
 def profile():
     # In a real app, you'd fetch a specific user by their ID
@@ -93,5 +93,35 @@ def register():
 
         # Redirect back to login box or homepage
         return redirect('/')
+
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('search_skill', '').strip().lower()
+
+    if not query:
+        return render_template('search-results.html', users=[], query="")
+
+    # Search in skills_have field (case-insensitive, partial match)
+    results = UserInfo.query.filter(UserInfo.skills_have.ilike(f"%{query}%")).all()
+
+    # Format results to fit your HTML template
+    users = []
+    colors = ['red', 'blue', 'green', 'purple', 'pink', 'orange']
+    for i, user in enumerate(results):
+        color = colors[i % len(colors)]
+        initials = user.user_name[0].upper()
+        users.append({
+            'name': user.user_name,
+            'email': user.user_mail,
+            'skill': query.capitalize(),
+            'offering': user.skills_have,
+            'wants': user.skills_want,
+            'availability': user.availability,
+            'location': user.location,
+            'initials': initials,
+            'color': color
+        })
+
+    return render_template('search-results.html', users=users, query=query)
 if __name__ == '__main__':
     app.run(debug=True)
